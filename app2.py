@@ -1,7 +1,7 @@
 # Using Streamlit
 import streamlit as st
 from langchain_community.llms import Cohere
-from langchain_community.vectorstores import Chroma
+from langchain_community.vectorstores import FAISS
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_core.prompts import PromptTemplate
@@ -39,7 +39,7 @@ def text_splitter(raw_text):
 
 def get_vector_store(text_chunks):
     embeddings = HuggingFaceEmbeddings(model_name='sentence-transformers/all-MiniLM-L6-v2')
-    vectorstore = Chroma.from_texts(text_chunks, embedding=embeddings)
+    vectorstore = FAISS.from_texts(text_chunks, embedding=embeddings)
     return vectorstore
 
 def format_docs(docs):
