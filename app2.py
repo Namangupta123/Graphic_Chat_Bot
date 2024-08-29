@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
-
+API_KEY = os.getenv("COHERE_API_KEY")
 st.set_page_config(
     page_title="Graphic Era ChatBot",
     page_icon="🤖",
@@ -67,7 +67,7 @@ def format_docs(docs):
 
 def generate_answer(question, retriever):
     try:
-        cohere_llm = Cohere(model="command", temperature=0.1, cohere_api_key='COHERE_API_KEY')
+        cohere_llm = Cohere(model="command", temperature=0.1, cohere_api_key=API_KEY)
 
         prompt_template = """Answer the question as broadly as possible using the provided context. If the answer is
                         not contained in the context, say "Sorry the answer is not available in context" "\n\n
